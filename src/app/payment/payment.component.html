@@ -1,0 +1,221 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row">
+    <div>
+      <h3 class="panel-heading">Payment Plan</h3>
+
+      <div class="panelBody">
+        <!--Mortgage Amount-->
+        <div>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.amountTip = !showDiv.amountTip"
+          />
+          <label for="amount" class="col-md-5">Mortgage Amount</label>
+          <span class="input-group-addon">$</span>
+          <input
+            formControlName="amount"
+            id="amount"
+            type="text"
+            [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"
+          />
+          <div *ngIf="submitted && f.amount.touched && f.amount.invalid">
+            <div *ngIf="f.amount.errors.pattern || f.amount.errors.required">
+              Please enter an amount greater than 0 with a maximum of 2 decimal
+              places. Enter "." as a decimal separator and "," as a thousand
+              separator.
+            </div>
+          </div>
+          <div *ngIf="showDiv.amountTip">
+            The amount you expect to borrow from your financial institution. It
+            is calculated as the purchase price of your home, minus the down
+            payment plus any applicable mortgage loan insurance premium you have
+            to pay.
+          </div>
+        </div>
+        <br />
+        <!--Rate-->
+        <div>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.rateTip = !showDiv.rateTip"
+          />
+          <label for="rate" class="col-md-5">Interest Rate</label>
+
+          <input
+            formControlName="rate"
+            id="rate"
+            type="text"
+            class="form-control"
+          />
+          <span class="input-group-addon">%</span>
+          <div *ngIf="submitted && f.rate.touched && f.rate.invalid">
+            <div *ngIf="f.rate.errors.pattern || f.rate.errors.required">
+              Please enter a percent greater than 0 and less than 100 with a
+              maximum of 2 decimal places. Enter "." as a decimal separator.
+            </div>
+          </div>
+          <div *ngIf="showDiv.rateTip">
+            Annual interest rate for this mortgage .
+          </div>
+        </div>
+        <br />
+
+        <!--Ammortization Period -->
+        <div class="form-group">
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.amortizationTip = !showDiv.amortizationTip"
+          />
+          <label for="ammortizationYears" class="col-md-5"
+            >Amortization Period</label
+          >
+          <select
+            formControlName="ammortizationYears"
+            id="ammortizationYears"
+            class=".col-md-6"
+          >
+            <option>25 years</option>
+            <option *ngFor="let year of ammortizationYears">{{ year }}</option>
+          </select>
+
+          <select formControlName="ammortizationMonths">
+            <option></option>
+            <option *ngFor="let month of ammortizationMonths">
+              {{ month }}
+            </option>
+          </select>
+          <div *ngIf="showDiv.amortizationTip">
+            The number of years and months over which you will repay this loan.
+            The most common amortization period is 25 years. Not to be confused
+            with the term of your loan, which is the duration of the loan
+            agreement you signed with your financial institution and that has to
+            be renewed regularly. Terms are generally for 1 to 10 years.
+          </div>
+        </div>
+        <br />
+
+        <!--Frequency -->
+        <div>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.frequencyTip = !showDiv.frequencyTip"
+          />
+          <label for="frequency" class="col-md-5">Payment Frequency</label>
+          <select formControlName="frequency">
+            <option>Monthly (12x per year)</option>
+            <option *ngFor="let freq of frequency">{{ freq }}</option>
+          </select>
+          <div *ngIf="showDiv.frequencyTip">
+            By choosing an accelerated payment frequency, you can reduce your
+            amortization period and save thousands of dollars in interest in the
+            long run. For example, the accelerated bi-weekly payment allows you
+            to pay half of your monthly payment every two weeks. You will
+            therefore make 26 payments a year, the equivalent of one extra
+            monthly payment a year.
+          </div>
+        </div>
+        <br />
+
+        <!--Term -->
+        <div class="form-group">
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.termTip = !showDiv.termTip"
+          />
+          <label for="term" class="col-md-5">Term</label>
+          <select formControlName="term">
+            <option>5 Years</option>
+            <option *ngFor="let oneTerm of term">{{ oneTerm }}</option>
+          </select>
+          <div *ngIf="showDiv.termTip">The number of term years.</div>
+        </div>
+        <br />
+      </div>
+    </div>
+
+    <div>
+      <h3 class="panel-heading">Pre-Payment Plan</h3>
+
+      <div class="panelBody">
+        <!--PrePayment  -->
+        <div>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.preaamountTip = !showDiv.preaamountTip"
+          />
+          <label for="preamount" class="col-md-5">PrePayment Amount</label>
+          <span class="input-group-addon">$</span>
+          <input formControlName="preamount" id="preamount" type="text" />
+          <div *ngIf="submitted && f.preamount.touched && f.preamount.invalid">
+            <div
+              *ngIf="f.preamount.errors.pattern || f.preamount.errors.required"
+            >
+              Please enter an amount greater than or equal to 0 with a maximum
+              of 2 decimal places. Enter "." as a decimal separator and "," as a
+              thousand separator.
+            </div>
+          </div>
+          <div *ngIf="showDiv.preaamountTip">
+            Amount that you will prepay on your mortgage. This amount will be
+            applied to the mortgage principal balance, at a frequency of
+            prepayments that you determine.
+          </div>
+        </div>
+        <br />
+
+        <!--PrePayment Frequceny  -->
+        <div>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.prefreqTip = !showDiv.prefreqTip"
+          />
+          <label for="prefrequency" class="col-md-5">Payment Frequency</label>
+          <select formControlName="prefrequency">
+            <option>Semi-Monthly (2x12 times a year)</option>
+            <option *ngFor="let prefreq of prefrequency">{{ prefreq }}</option>
+          </select>
+          <div *ngIf="showDiv.prefreqTip">
+            The frequency under which you will make prepayments on your
+            mortgage. The options are one time payment, yearly and the same as
+            regular payment.
+          </div>
+        </div>
+        <br />
+
+        <!--Starts With  -->
+        <div>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.startWithTip = !showDiv.startWithTip"
+          />
+          <label for="startswith" class="col-md-5">Start With</label>
+          <input formControlName="startswith" id="startswith" type="text" />
+          <div
+            *ngIf="submitted && f.startswith.touched && f.startswith.invalid"
+          >
+            <div
+              *ngIf="
+                f.startswith.errors.pattern || f.startswith.errors.required
+              "
+            >
+              Please enter a valid whole number greater than 0.
+            </div>
+          </div>
+          <div *ngIf="showDiv.startWithTip">
+            Please enter a valid whole number greater than 0.
+          </div>
+        </div>
+
+        <br />
+      </div>
+    </div>
+    <br />
+    <div>
+      <button type="submit" class="Reviewbtn">Calculate</button>
+    </div>
+  </div>
+</form>
+
+<div class="calSumm" *ngIf="showDiv.showSummary">
+  <summary-app></summary-app>
+</div>

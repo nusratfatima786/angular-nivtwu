@@ -1,0 +1,106 @@
+table {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  border-collapse: collapse;
+}
+
+.row {
+  padding: 75px;
+}
+td {
+  border: 1px solid #369;
+  padding: 5px;
+}
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 16px;
+}
+
+th {
+  border: 1px solid #369;
+  padding: 5px;
+}
+
+.panel-heading {
+  color: white;
+  background-color: #2572b4;
+  border-color: #2572b4;
+  padding: 10px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.col-md-6 {
+  float: left;
+  width: 50%;
+  border-color: 2572b4;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-5 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 41%;
+}
+.col-md-7 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 58.3333333333%;
+}
+.panel-primary {
+  border-color: 2572b4;
+}
+
+.panelBody {
+  position: relative;
+  min-height: 1px;
+  padding: 15px;
+  padding-left: 15px;
+  border: 1px solid transparent;
+  border-color: #2572b4;
+}
+
+.calSumm {
+  float: left;
+  width: 100%;
+}
+
+.mrgn-bttm-lg {
+  margin-bottom: 30px;
+}
+
+
+.input-group-addon {
+  padding: 6px 4px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.Reviewbtn {
+  border-style: outset;
+  height: auto;
+  min-height: 36px;
+  min-width: 36px;
+  white-space: normal;
+}

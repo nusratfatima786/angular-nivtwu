@@ -1,0 +1,213 @@
+<div class="summaryDiv">
+  <div class="caption">
+    {{ header }}
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <th>Category</th>
+        <th>Term</th>
+        <th>Ammortization Period</th>
+      </tr>
+
+      <tr>
+        <td>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.numberofPayments = !showDiv.numberofPayments"
+          />
+          Number of Payments
+          <div *ngIf="showDiv.numberofPayments">
+            The number of payments made during the Term and Amoritization period
+            respectively.
+          </div>
+        </td>
+        <td>
+          <p>{{ termSummary.numberOfPayments }}</p>
+        </td>
+        <td>
+          <p>{{ ammortizationSummary.numberOfPayments }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.payment = !showDiv.payment"
+          />
+          Mortgage Payment
+          <div *ngIf="showDiv.payment">
+            The amount you will pay per period during the Term and Amoritization
+            respectively, which include a portion for the principal payment and
+            a portion for the interest payment.
+          </div>
+        </td>
+        <td>
+          <p>
+            ${{
+              termSummary.mortgagePayment | number: '1.2-2'
+            }}
+          </p>
+        </td>
+        <td>
+          <p>
+           $ {{
+              ammortizationSummary.mortgagePayment
+                | number: '1.2-2'
+            }}
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.prepayment = !showDiv.prepayment"
+          />
+          PrePayment
+          <div *ngIf="showDiv.prepayment">
+            The amount of prepayment made during the Term and Amoritization
+            period respectively.
+          </div>
+        </td>
+        <td>
+          <p>${{ termSummary.prepayment | number: '1.2-2' }}</p>
+        </td>
+        <td>
+          <p>${{ ammortizationSummary.prepayment | number: '1.2-2' }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.principalPayment = !showDiv.principalPayment"
+          />
+          Principal Payments
+          <div *ngIf="showDiv.principalPayment">
+            The total amount of principal payment made during the Term and
+            Amoritization period respectively.
+          </div>
+        </td>
+        <td>
+          <p>${{ termSummary.principalPayment | number: '1.2-2' }}</p>
+        </td>
+        <td>
+          <p>${{ ammortizationSummary.principalPayment | number: '1.2-2' }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.interestPayments = !showDiv.interestPayments"
+          />
+          Interest Payments
+          <div *ngIf="showDiv.interestPayments">
+            Total of all interest paid during the Term and Amoritization period
+            respectively, assuming that the conditions of your loan (e.g.
+            interest rate, amortization period, term, etc.) will not change
+            during these periods. This total interest amount also assumes that
+            there are no prepayments of principal.
+          </div>
+        </td>
+        <td>
+          <p>$ {{ termSummary.interestPayment | number: '1.2-2' }}</p>
+        </td>
+        <td>
+          <p>${{ ammortizationSummary.interestPayment | number: '1.2-2' }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <img
+            src="https://itools-ioutils.fcac-acfc.gc.ca/MC-CH/images/help.gif"
+            (click)="showDiv.totalCost = !showDiv.totalCost"
+          />
+          Total Cost
+          <div *ngIf="showDiv.totalCost">
+            Total of all payments made during the Term and Amoritization period
+            respectively, assuming that the conditions of your loan (e.g.
+            interest rate, amortization period, term, etc.) will not change
+            during these periods. It is also assumed that there are no
+            prepayments of principal.
+          </div>
+        </td>
+        <td>
+          <p>${{ termSummary.totalCost | number: '1.2-2' }}</p>
+        </td>
+        <td>
+          <p>${{ ammortizationSummary.totalCost | number: '1.2-2' }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="summaryDiv">
+  <label class="caption"> Mortgage Summary</label>
+  <ul>
+    Over the 25-year amortization period, you will:
+  </ul>
+  <li>
+    have made <b>{{ ammortizationSummary.numberOfPayments }}</b>
+    {{ paymentdetails.paymentFrequency }} payments of
+    <b>${{ ammortizationSummary.mortgagePayment | number: '1.2-2' }}</b
+    >.
+  </li>
+  <li>
+    have paid <b>${{ ammortizationSummary.principalPayment| number: '1.2-2' }}</b> in principal,
+    $ <b>{{ ammortizationSummary.interestPayment | number: '1.2-2' }} </b> in
+    interest, for a total of <b
+      >${{ ammortizationSummary.totalCost | number: '1.2-2' }}</b
+    >.
+  </li>
+
+  <ul>
+    Over the
+    {{
+      paymentdetails.term
+    }}-year term, you will:
+  </ul>
+  <li>
+    have made <b>{{ termSummary.numberOfPayments }}</b>
+    {{ paymentdetails.paymentFrequency }} payments of 
+    <b>${{
+      termSummary.mortgagePayment | number: '1.2-2'
+    }}</b>.
+  </li>
+  <li>
+    have paid <b>${{ termSummary.principalPayment | number: '1.2-2' }}</b> in
+    principal, <b>$ {{ termSummary.interestPayment | number: '1.2-2' }}</b> in
+    interest, for a total of
+    <b>${{ termSummary.totalCost | number: '1.2-2' }}</b
+    >.
+  </li>
+
+  <ul>
+    At the end of your
+    {{
+      paymentdetails.term
+    }}-year term, you will:
+  </ul>
+  <li>
+    have a balance of $
+    <b>{{
+      ammortizationSummary.principalPayment - termSummary.interestPayment
+        | number: '1.2-2'
+    }}</b
+    >.
+  </li>
+</div>
+
+<button class="Reviewbtn" (click)="showSummaryReport()">
+  Summary Report....
+</button>
+
+<payment-schedule *ngIf="showDiv.summaryReport"></payment-schedule>
+<footer-app></footer-app>

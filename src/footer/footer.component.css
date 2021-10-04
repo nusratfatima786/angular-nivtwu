@@ -1,0 +1,10 @@
+.summaryDiv {
+  padding: 25px;
+}
+.Reviewbtn {
+  border-style: outset;
+  height: auto;
+  min-height: 36px;
+  min-width: 36px;
+  white-space: normal;
+}

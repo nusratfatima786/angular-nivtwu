@@ -1,0 +1,30 @@
+<div class="summaryDiv">
+  <div class="caption">
+    {{ header }}
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <th>Month</th>
+        <th>Principal Payment</th>
+        <th>Interest Payment</th>
+        <th>Total Payment</th>
+        <th>Ending Balance</th>
+      </tr>
+
+      <ng-container *ngFor="let details of termDetailedSummary; let i = index">
+        <tr>
+          <td>Month {{ i + 1 }}</td>
+          <td>${{ details.principalPaid | number: '1.2-2' }}</td>
+          <td>${{ details.interestPaid | number: '1.2-2' }}</td>
+
+          <td>
+            {{ ConvertToInt(details.principalPaid) | number: '1.2-2' }} +
+            {{ ConvertToInt(details.interestPaid) | number: '1.2-2' }}
+          </td>
+          <td>${{ details.remainBal | number: '1.2-2' }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,51 @@
+header {
+  font-family: Lato, sans-serif;
+  color: blue;
+  font-size: 1.7em;
+}
+
+img {
+  height: 40px;
+}
+
+.tools-introduction {
+  font-size: 16px;
+  line-height: 23px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 3px solid black;
+  position: absolute;
+}
+
+.menu {
+  padding: 5px 10px;
+  white-space: pre;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.menuHeader {
+  white-space: pre;
+  background-color: #26374a;
+  border: 1px solid #26374a;
+  color: #fff;
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+}
+
+.mortgageheader {
+  border-bottom: 1px solid #af3c43;
+  margin-bottom: 0.2em;
+  margin-top: 1em;
+  padding-bottom: 0.2em;
+  font-size: 1.7em;
+  font-family: Lato, sans-serif;
+}
+
+.row {
+  padding: 25px;
+}
