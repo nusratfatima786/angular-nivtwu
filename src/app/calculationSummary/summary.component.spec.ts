@@ -1,14 +1,15 @@
 // property bindings example
+import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { SummaryComponent } from './summary.component';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CalcService } from '../services/calc.service';
-import { delay } from 'rxjs/operators';
+import { DetailedComponent } from '../detailedSummary/detailed.component';
+
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
-
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
   let fixture: ComponentFixture<SummaryComponent>;
@@ -24,9 +25,9 @@ describe('SummaryComponent', () => {
     );
 
     TestBed.configureTestingModule({
-      declarations: [SummaryComponent],
+      declarations: [SummaryComponent, DetailedComponent],
       providers: [CalcService],
-    });
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SummaryComponent);
     component = fixture.componentInstance;
@@ -35,6 +36,10 @@ describe('SummaryComponent', () => {
     element = dbgElement.nativeElement;
 
     fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   it('Summary Component Should Contains Defaiult Header', () => {

@@ -7,7 +7,8 @@ import { AppModule } from './app/app.module';
 import './test/jasmine-setup';
 import 'jasmine-core/lib/jasmine-core/jasmine-html.js';
 import 'jasmine-core/lib/jasmine-core/boot.js';
-import './app/calculationSummary/summary.component.spec.ts';
+import './app/payment/payment.component.spec.ts';
+//import './app/calculationSummary/summary.component.spec.ts';
 import './footer/footer.component.spec.ts';
 
 import { TestBed, async } from '@angular/core/testing';

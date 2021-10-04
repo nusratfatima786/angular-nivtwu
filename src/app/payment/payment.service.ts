@@ -30,7 +30,6 @@ export class PaymentService {
         Number(this.termPrincialInterest.interest),
       detailedTermSummary: this.termPrincialInterest.detailedPayments,
     };
-    console.log('From Payment Service' + this.termSummary);
     return this.termSummary;
   }
 

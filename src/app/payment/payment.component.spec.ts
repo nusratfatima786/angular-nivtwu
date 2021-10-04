@@ -1,39 +1,29 @@
 // property bindings example
-import { PaymentComponent } from './payment.component';
+//import { PaymentComponent } from './payment.component';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import {
-  TestBed,
-  ComponentFixture,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { CalcService } from '../services/calc.service';
 import { PaymentService } from './payment.service';
-import { delay } from 'rxjs/operators';
 import { Mortgage, IMortgage } from './mortgage';
-import { expressionChangedAfterItHasBeenCheckedError } from '@angular/core/src/view/errors';
-import { summaryFileName } from '@angular/compiler/src/aot/util';
-import { pureArrayDef } from '@angular/core/src/view/pure_expression';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting,
+} from '@angular/platform-browser-dynamic/testing';
 
-describe('SummaryComponent', () => {
-  let component: PaymentComponent;
-  let fixture: ComponentFixture<PaymentComponent>;
+describe('Payment Service ', () => {
   let dbgElement: ComponentFixture;
   let element: HTMLElement;
-  let calcService: CalcService;
   let paymentService: PaymentService;
-
-  const createFakeFile = (fileName: string = 'fileName'): File => {
-    const blob = new Blob([''], { type: 'text/html' });
-    blob['lastModifiedDate'] = '';
-    blob['name'] = fileName;
-    return <File>blob;
-  };
 
   const paymentDetails: IMortgage = {
     amount: 100000,
     rate: '5',
-    amortizationPeriodMonth: '25 Months',
+    amortizationPeriodMonth: '0 Months',
     amortizationPeriodYears: '25 years',
     paymentFrequency: 'Monthly (12x per year)',
     term: '5 years',
@@ -43,50 +33,60 @@ describe('SummaryComponent', () => {
   };
 
   beforeEach(() => {
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(
+      BrowserDynamicTestingModule,
+      platformBrowserDynamicTesting()
+    );
+
     TestBed.configureTestingModule({
-      declarations: [PaymentComponent],
-      providers: [CalcService, PaymentService],
+      providers: [PaymentService],
     });
 
-    fixture = TestBed.createComponent(PaymentComponent);
-    component = fixture.componentInstance;
-    calcService = TestBed.get(CalcService);
     paymentService = TestBed.get(PaymentService);
-    dbgElement = fixture.debugElement.query(By.css('.caption'));
-    element = dbgElement.nativeElement;
-
-    fixture.detectChanges();
   });
 
-  it('Payment service should be created', () => {
-    const service: PaymentService = TestBed.get(paymentService);
-    expect(service).toBeTruthy();
+  it(' Calculae total princial payment ', () => {
+    let testResult: any = Number(paymentDetails.amount)
+    console.log('Term Ammortization Cost -> ' + testResult);
+    expect(testResult).toBe(175377);
   });
 
-  it('Show Div for all elements should be disabled on page load', () => {
-    let status = component.showDiv;
-    expect(status.amountTip == false);
-    expect(status.rateTip == false);
-    expect(status.amortizationTip == false);
-    expect(status.frequencyTip == false);
-    expect(status.preaamountTip == false);
-    expect(status.prefreqTip == false);
-    expect(status.prefreqTip == false);
+  it(' Calculae total ammortization cost ', () => {
+    let testResult: any = Math.round(
+      paymentService.calculateTotalCost(paymentDetails)
+    );
+    console.log('Term Ammortization Cost -> ' + testResult);
+    expect(testResult).toBe(175377);
   });
 
-  it(' Calculae total term payments ', () => {
-    paymentService.calculateTermNumPayments(paymentDetails);
-    expect(service.termSummary.numberOfPayments).tobe(60);
+  it(' Calculae total ammortization interest  ', () => {
+    let testResult: any = Math.round(
+      paymentService.calculateTotalInterest(paymentDetails)
+    );
+    console.log('Term Ammortization Cost -> ' + testResult);
+    expect(testResult).toBe(75377);
   });
 
   it(' Calculae total ammoritzation payments ', () => {
-    paymentService.calculateAmmortizationNumPayments(paymentDetails);
-    expect(service.termSummary.numberOfPayments).tobe(300);
+    let testResult: any =
+      paymentService.calculateAmmortizationNumPayments(paymentDetails);
+    console.log('Ammortization Payments -> ' + testResult);
+    expect(testResult).toBe(300);
   });
 
+  it(' Calculae total term payments ', () => {
+    let testResult: any =
+      paymentService.calculateTermNumPayments(paymentDetails);
+    console.log('Term Payments -> ' + testResult);
+    expect(testResult).toBe(60);
+  });
 
   it(' Calculae monthy mortgage payments ', () => {
-    paymentService.calculateMonthlyMortgage(paymentDetails);
-    expect(service.termSummary.numberOfPayments).tobe(1613);
+    let testResult: any = Math.round(
+      paymentService.calculateMonthlyMortgage(paymentDetails)
+    );
+    console.log('Monthly Mortgage -> ' + testResult);
+    expect(testResult).toBe(585);
   });
 });
