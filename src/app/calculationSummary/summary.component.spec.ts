@@ -1,11 +1,6 @@
 // property bindings example
 import { SummaryComponent } from './summary.component';
-import {
-  TestBed,
-  ComponentFixture,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CalcService } from '../services/calc.service';
 import { delay } from 'rxjs/operators';
@@ -30,6 +25,9 @@ describe('SummaryComponent', () => {
     element = dbgElement.nativeElement;
 
     fixture.detectChanges();
+  });
+  it('should be created', () => {
+    expect(component).to.exist;
   });
 
   it('Summary Component Should Contains Defaiult Header', () => {
