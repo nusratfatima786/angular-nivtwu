@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent {
-  name = 'Mortage Calculator';
+  header = 'Mortage Calculator';
 
   goToLink() {
     window.open(

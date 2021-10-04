@@ -1,20 +1,19 @@
 // property bindings example
-import { SummaryComponent } from './summary.component';
+import { FooterComponent } from './footer.component';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CalcService } from '../services/calc.service';
 import { delay } from 'rxjs/operators';
+
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
 describe('SummaryComponent', () => {
-  let component: SummaryComponent;
-  let fixture: ComponentFixture<SummaryComponent>;
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
   let dbgElement: ComponentFixture;
   let element: HTMLElement;
-  let calcService: CalcService;
 
   beforeEach(() => {
     TestBed.resetTestEnvironment();
@@ -24,21 +23,20 @@ describe('SummaryComponent', () => {
     );
 
     TestBed.configureTestingModule({
-      declarations: [SummaryComponent],
-      providers: [CalcService],
+      declarations: [FooterComponent],
+      providers: [],
     });
 
-    fixture = TestBed.createComponent(SummaryComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
-    calcService = TestBed.get(CalcService);
-    dbgElement = fixture.debugElement.query(By.css('.caption'));
+    dbgElement = fixture.debugElement.query(By.css('.header'));
     element = dbgElement.nativeElement;
 
     fixture.detectChanges();
   });
 
-  it('Summary Component Should Contains Defaiult Header', () => {
-    console.log(element.innerText);
-    expect(element.textContent).toContain('Calculation Summary');
+  it('Footer Component Should Contains Defaiult Header', () => {
+    console.log('Footer Component' + element.innerHTML);
+    expect(element.innerHTML).toContain('Rate This Tool');
   });
 });
